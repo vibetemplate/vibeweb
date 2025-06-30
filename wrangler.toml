@@ -1,0 +1,79 @@
+name = "vibecli-web"
+compatibility_date = "2024-01-01"
+compatibility_flags = ["nodejs_compat"]
+
+[env.production]
+name = "vibecli-web-production"
+routes = [
+  { pattern = "vibecli.com", zone_name = "vibecli.com" },
+  { pattern = "www.vibecli.com", zone_name = "vibecli.com" }
+]
+
+[env.staging]
+name = "vibecli-web-staging"
+routes = [
+  { pattern = "staging.vibecli.com", zone_name = "vibecli.com" }
+]
+
+# KV Namespaces
+[[kv_namespaces]]
+binding = "CACHE"
+id = "your-kv-namespace-id"
+preview_id = "your-preview-kv-namespace-id"
+
+[[kv_namespaces]]
+binding = "SESSIONS"
+id = "your-sessions-kv-namespace-id"
+preview_id = "your-preview-sessions-kv-namespace-id"
+
+# D1 Database (if using Cloudflare D1 instead of Supabase)
+# [[d1_databases]]
+# binding = "DB"
+# database_name = "vibecli-web-db"
+# database_id = "your-d1-database-id"
+
+# Environment Variables
+[vars]
+NEXT_PUBLIC_APP_URL = "https://vibecli.com"
+NEXT_PUBLIC_SUPABASE_URL = "your-supabase-url"
+NEXT_PUBLIC_SUPABASE_ANON_KEY = "your-supabase-anon-key"
+
+# Secret Environment Variables (set via wrangler secret put)
+# DATABASE_URL
+# SUPABASE_SERVICE_ROLE_KEY
+# NEXTAUTH_SECRET
+# GITHUB_CLIENT_ID
+# GITHUB_CLIENT_SECRET
+
+# Build Configuration
+[build]
+command = "npm run build"
+cwd = "."
+watch_dir = "src"
+
+# Pages Configuration
+[build.upload]
+format = "modules"
+dir = ".next"
+main = "./server.js"
+compatibility_date = "2024-01-01"
+
+# Analytics and Monitoring
+[analytics_engine_datasets]
+name = "vibecli_analytics"
+binding = "ANALYTICS"
+
+# Durable Objects (if needed for real-time features)
+# [[durable_objects.bindings]]
+# name = "REALTIME_SESSIONS"
+# class_name = "RealtimeSession"
+
+# Workers AI (if using Cloudflare AI features)
+# [ai]
+# binding = "AI"
+
+# Custom domains and SSL
+[routes]
+patterns = ["vibecli.com/*", "www.vibecli.com/*"]
+custom_domain = true
+zone_name = "vibecli.com"

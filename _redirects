@@ -1,0 +1,46 @@
+# Cloudflare Pages Redirects Configuration
+
+# Force HTTPS
+http://vibecli.com/* https://vibecli.com/:splat 301!
+http://www.vibecli.com/* https://www.vibecli.com/:splat 301!
+
+# Redirect www to non-www (or vice versa based on preference)
+https://www.vibecli.com/* https://vibecli.com/:splat 301!
+
+# Legacy redirects
+/docs/getting-started /docs 301
+/documentation/* /docs/:splat 301
+/guide/* /docs/:splat 301
+
+# API redirects
+/api/v1/* /api/:splat 301
+
+# Short URLs
+/gh https://github.com/vibetemplate/vibecli 302
+/discord https://discord.gg/vibecli 302
+/twitter https://twitter.com/vibecli 302
+
+# Marketing redirects
+/download /docs 302
+/install /docs 302
+/get-started /docs 302
+/start /docs 302
+
+# Auth redirects
+/signin /login 302
+/signup /register 302
+/account /dashboard 302
+/profile /settings 302
+
+# Demo redirects
+/try /demo 302
+/playground /demo 302
+/test /demo 302
+
+# Pricing redirects
+/plans /pricing 302
+/subscribe /pricing 302
+/pro /pricing 302
+
+# Fallback for SPA routing
+/* /index.html 200

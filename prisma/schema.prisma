@@ -1,0 +1,211 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// 用户模型
+model User {
+  id          String   @id @default(cuid())
+  email       String   @unique
+  name        String?
+  avatar      String?
+  role        Role     @default(USER)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  // 关联关系
+  projects    Project[]
+  comments    Comment[]
+  likes       Like[]
+  
+  @@map("users")
+}
+
+// 用户角色枚举
+enum Role {
+  USER
+  ADMIN
+  DEVELOPER
+}
+
+// 项目模型 - 展示VibeCLI生成的项目案例
+model Project {
+  id          String        @id @default(cuid())
+  title       String
+  description String
+  content     String?       // 项目详细内容
+  thumbnail   String?       // 项目缩略图
+  demoUrl     String?       // 在线演示地址
+  githubUrl   String?       // GitHub仓库地址
+  techStack   String[]      // 技术栈数组
+  category    ProjectCategory
+  featured    Boolean       @default(false)
+  published   Boolean       @default(false)
+  views       Int           @default(0)
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  
+  // 关联关系
+  authorId    String
+  author      User          @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  comments    Comment[]
+  likes       Like[]
+  tags        ProjectTag[]
+  
+  @@map("projects")
+}
+
+// 项目分类枚举
+enum ProjectCategory {
+  ECOMMERCE
+  SAAS
+  BLOG
+  PORTFOLIO
+  DASHBOARD
+  API
+  FULLSTACK
+  MOBILE
+  AI_ML
+  OTHER
+}
+
+// 标签模型
+model Tag {
+  id       String       @id @default(cuid())
+  name     String       @unique
+  color    String?      // 标签颜色
+  projects ProjectTag[]
+  
+  @@map("tags")
+}
+
+// 项目标签关联表
+model ProjectTag {
+  projectId String
+  tagId     String
+  project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  tag       Tag     @relation(fields: [tagId], references: [id], onDelete: Cascade)
+  
+  @@id([projectId, tagId])
+  @@map("project_tags")
+}
+
+// 评论模型
+model Comment {
+  id        String   @id @default(cuid())
+  content   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  // 关联关系
+  authorId  String
+  author    User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  projectId String
+  project   Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  
+  @@map("comments")
+}
+
+// 点赞模型
+model Like {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  
+  // 关联关系
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  projectId String
+  project   Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  
+  @@unique([userId, projectId])
+  @@map("likes")
+}
+
+// 文档模型 - 技术文档系统
+model Document {
+  id          String      @id @default(cuid())
+  title       String
+  slug        String      @unique
+  content     String      // Markdown内容
+  description String?
+  category    DocCategory
+  published   Boolean     @default(false)
+  featured    Boolean     @default(false)
+  order       Int         @default(0)
+  views       Int         @default(0)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  
+  @@map("documents")
+}
+
+// 文档分类枚举
+enum DocCategory {
+  GETTING_STARTED
+  API_REFERENCE
+  TUTORIALS
+  EXAMPLES
+  TROUBLESHOOTING
+  CHANGELOG
+  GUIDES
+}
+
+// 统计数据模型 - 用于分析和展示
+model Analytics {
+  id        String   @id @default(cuid())
+  event     String   // 事件类型
+  page      String?  // 页面路径
+  userId    String?  // 用户ID（可选）
+  metadata  Json?    // 额外数据
+  timestamp DateTime @default(now())
+  
+  @@map("analytics")
+}
+
+// 订阅邮箱模型 - 收集用户邮箱
+model Newsletter {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+  
+  @@map("newsletter")
+}
+
+// 反馈模型 - 用户反馈和建议
+model Feedback {
+  id        String       @id @default(cuid())
+  name      String?
+  email     String?
+  type      FeedbackType
+  subject   String
+  message   String
+  status    FeedbackStatus @default(PENDING)
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+  
+  @@map("feedback")
+}
+
+// 反馈类型枚举
+enum FeedbackType {
+  BUG_REPORT
+  FEATURE_REQUEST
+  GENERAL
+  SUPPORT
+}
+
+// 反馈状态枚举
+enum FeedbackStatus {
+  PENDING
+  IN_PROGRESS
+  RESOLVED
+  CLOSED
+}
