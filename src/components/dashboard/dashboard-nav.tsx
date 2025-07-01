@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
@@ -26,6 +26,7 @@ import {
   Plus
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { useAuth } from '@/lib/auth';
 
 const navigation = [
   {
@@ -52,6 +53,13 @@ const navigation = [
 
 export function DashboardNav() {
   const pathname = usePathname();
+  const router = useRouter();
+  const { user, logout } = useAuth();
+  
+  const handleLogout = () => {
+    logout();
+    router.push('/');
+  };
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -71,21 +79,27 @@ export function DashboardNav() {
 
         {/* Navigation */}
         <nav className="hidden md:flex items-center space-x-6">
-          {navigation.map((item) => (
-            <Link
-              key={item.name}
-              href={item.href}
-              className={cn(
-                "flex items-center space-x-2 text-sm font-medium transition-colors hover:text-foreground",
-                pathname === item.href
-                  ? "text-foreground"
-                  : "text-muted-foreground"
-              )}
-            >
-              <item.icon className="h-4 w-4" />
-              <span>{item.name}</span>
-            </Link>
-          ))}
+          {navigation.map((item) => {
+            const isActive = pathname === item.href || pathname.startsWith(item.href + '/');
+            return (
+              <Link
+                key={item.name}
+                href={item.href}
+                className={cn(
+                  "flex items-center space-x-2 text-sm font-medium transition-colors hover:text-foreground relative",
+                  isActive
+                    ? "text-foreground"
+                    : "text-muted-foreground"
+                )}
+              >
+                <item.icon className="h-4 w-4" />
+                <span>{item.name}</span>
+                {isActive && (
+                  <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full" />
+                )}
+              </Link>
+            );
+          })}
         </nav>
 
         {/* Right Actions */}
@@ -117,9 +131,9 @@ export function DashboardNav() {
             <DropdownMenuContent className="w-56" align="end" forceMount>
               <DropdownMenuLabel className="font-normal">
                 <div className="flex flex-col space-y-1">
-                  <p className="text-sm font-medium leading-none">张三</p>
+                  <p className="text-sm font-medium leading-none">{user?.name || '用户'}</p>
                   <p className="text-xs leading-none text-muted-foreground">
-                    zhang@example.com
+                    {user?.email || ''}
                   </p>
                 </div>
               </DropdownMenuLabel>
@@ -143,7 +157,7 @@ export function DashboardNav() {
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuSeparator />
-              <DropdownMenuItem>
+              <DropdownMenuItem onClick={handleLogout}>
                 <LogOut className="mr-2 h-4 w-4" />
                 <span>退出登录</span>
               </DropdownMenuItem>

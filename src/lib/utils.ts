@@ -110,7 +110,7 @@ export function throttle<T extends (...args: any[]) => any>(
   
   return (...args: Parameters<T>) => {
     if (!inThrottle) {
-      func.apply(this, args)
+      func(...args)
       inThrottle = true
       setTimeout(() => (inThrottle = false), limit)
     }

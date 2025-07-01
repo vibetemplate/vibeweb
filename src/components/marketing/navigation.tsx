@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useTheme } from 'next-themes';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Moon, Sun, Menu, X, Github, Terminal, Zap, BookOpen } from 'lucide-react';
+import { Moon, Sun, Menu, X, Github, Terminal, Zap, BookOpen, Settings, Lightbulb } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const navigation = [
@@ -14,6 +14,18 @@ const navigation = [
     href: '/features',
     icon: Zap,
     description: '强大的AI驱动开发功能',
+  },
+  {
+    name: '项目故事',
+    href: '/story',
+    icon: Lightbulb,
+    description: '从DXT启发到VibeCLI的创新故事',
+  },
+  {
+    name: '客户端',
+    href: '/clients',
+    icon: Settings,
+    description: '8大AI客户端配置指南',
   },
   {
     name: '文档',
@@ -94,6 +106,9 @@ export function Navigation() {
           {/* CTA Buttons */}
           <div className="hidden md:flex items-center space-x-2">
             <Button variant="outline" asChild>
+              <Link href="/login">登录</Link>
+            </Button>
+            <Button variant="outline" asChild>
               <Link href="/docs">开始使用</Link>
             </Button>
             <Button variant="gradient" asChild>
@@ -142,6 +157,9 @@ export function Navigation() {
                 </Link>
               ))}
               <div className="flex flex-col space-y-2 pt-4 border-t">
+                <Button variant="outline" asChild>
+                  <Link href="/login">登录</Link>
+                </Button>
                 <Button variant="outline" asChild>
                   <Link href="/docs">开始使用</Link>
                 </Button>

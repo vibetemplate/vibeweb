@@ -3,6 +3,7 @@
 import * as React from 'react';
 import { useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -10,58 +11,51 @@ import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
 import { Github, Mail, Eye, EyeOff, Loader2 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { useAuth } from '@/lib/auth';
 
 export function LoginForm() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('demo@vibecli.com');
+  const [password, setPassword] = useState('demo123');
   const [showPassword, setShowPassword] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
+  const router = useRouter();
+  const { login, loginWithGitHub, isLoading } = useAuth();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsLoading(true);
-
-    try {
-      // 模拟登录API调用
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      
-      // 这里应该调用实际的Supabase认证
+    
+    const result = await login(email, password);
+    
+    if (result.success) {
       toast({
         title: '登录成功',
         description: '欢迎回到VibeCLI！',
       });
-      
-      // 重定向到仪表板
-      // router.push('/dashboard');
-      
-    } catch (error) {
+      router.push('/dashboard');
+    } else {
       toast({
         title: '登录失败',
-        description: '请检查您的邮箱和密码',
+        description: result.error || '请检查您的邮箱和密码',
         variant: 'destructive',
       });
-    } finally {
-      setIsLoading(false);
     }
   };
 
   const handleGitHubLogin = async () => {
-    setIsLoading(true);
-    try {
-      // 这里应该调用Supabase GitHub OAuth
+    const result = await loginWithGitHub();
+    
+    if (result.success) {
       toast({
-        title: 'GitHub登录',
-        description: '正在跳转到GitHub...',
+        title: 'GitHub登录成功',
+        description: '欢迎回到VibeCLI！',
       });
-    } catch (error) {
+      router.push('/dashboard');
+    } else {
       toast({
         title: '登录失败',
-        description: 'GitHub登录出现问题',
+        description: result.error || 'GitHub登录出现问题',
         variant: 'destructive',
       });
-    } finally {
-      setIsLoading(false);
     }
   };
 
@@ -72,6 +66,11 @@ export function LoginForm() {
         <CardDescription>
           使用邮箱或GitHub账户登录
         </CardDescription>
+        <div className="bg-blue-50 dark:bg-blue-900/20 p-3 rounded-lg text-sm">
+          <p className="font-medium text-blue-800 dark:text-blue-200">演示账户</p>
+          <p className="text-blue-600 dark:text-blue-300">邮箱: demo@vibecli.com</p>
+          <p className="text-blue-600 dark:text-blue-300">密码: demo123</p>
+        </div>
       </CardHeader>
       
       <CardContent className="space-y-4">

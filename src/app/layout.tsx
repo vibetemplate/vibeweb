@@ -1,6 +1,7 @@
 import { Inter, JetBrains_Mono } from 'next/font/google';
 import { ThemeProvider } from '@/components/common/theme-provider';
 import { Toaster } from '@/components/ui/toaster';
+import { Footer } from '@/components/marketing/footer';
 import '@/styles/globals.css';
 
 const inter = Inter({
@@ -89,6 +90,7 @@ export default function RootLayout({
         >
           <div className="relative flex min-h-screen flex-col">
             <div className="flex-1">{children}</div>
+            <Footer />
           </div>
           <Toaster />
         </ThemeProvider>

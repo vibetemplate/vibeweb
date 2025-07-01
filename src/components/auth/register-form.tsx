@@ -3,6 +3,7 @@
 import * as React from 'react';
 import { useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -11,6 +12,7 @@ import { Separator } from '@/components/ui/separator';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Github, Eye, EyeOff, Loader2, CheckCircle } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { useAuth } from '@/lib/auth';
 
 export function RegisterForm() {
   const [formData, setFormData] = useState({
@@ -21,8 +23,9 @@ export function RegisterForm() {
   });
   const [showPassword, setShowPassword] = useState(false);
   const [acceptTerms, setAcceptTerms] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
+  const router = useRouter();
+  const { register, loginWithGitHub, isLoading } = useAuth();
 
   const passwordStrength = {
     length: formData.password.length >= 8,
@@ -64,46 +67,38 @@ export function RegisterForm() {
       return;
     }
 
-    setIsLoading(true);
-
-    try {
-      // 模拟注册API调用
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
+    const result = await register(formData.name, formData.email, formData.password);
+    
+    if (result.success) {
       toast({
         title: '注册成功！',
-        description: '请检查您的邮箱以验证账户',
+        description: '欢迎加入VibeCLI！',
       });
-      
-      // 重定向到验证页面或仪表板
-      
-    } catch (error) {
+      router.push('/dashboard');
+    } else {
       toast({
         title: '注册失败',
-        description: '注册过程中出现问题，请稍后重试',
+        description: result.error || '注册过程中出现问题，请稍后重试',
         variant: 'destructive',
       });
-    } finally {
-      setIsLoading(false);
     }
   };
 
   const handleGitHubRegister = async () => {
-    setIsLoading(true);
-    try {
-      // 这里应该调用Supabase GitHub OAuth
+    const result = await loginWithGitHub();
+    
+    if (result.success) {
       toast({
-        title: 'GitHub注册',
-        description: '正在跳转到GitHub...',
+        title: 'GitHub注册成功',
+        description: '欢迎加入VibeCLI！',
       });
-    } catch (error) {
+      router.push('/dashboard');
+    } else {
       toast({
         title: '注册失败',
-        description: 'GitHub注册出现问题',
+        description: result.error || 'GitHub注册出现问题',
         variant: 'destructive',
       });
-    } finally {
-      setIsLoading(false);
     }
   };
 

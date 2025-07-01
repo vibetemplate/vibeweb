@@ -189,10 +189,10 @@ const clientEcosystem = [
   { name: 'Claude Desktop', support: '完全支持', status: 'success', features: ['原生AI对话', '自然语言描述', 'Elicitation交互'] },
   { name: 'Cursor IDE', support: '完全支持', status: 'success', features: ['代码编辑集成', '实时生成调试', '资源链接导航'] },
   { name: 'Cline', support: '兼容模式', status: 'warning', features: ['终端内管理', '向后兼容', '渐进升级'] },
-  { name: 'Cherry Studio', support: '开发中', status: 'info', features: ['可视化界面', '拖拽配置', '项目预览'] },
+  { name: 'Cherry Studio', support: '直接可用', status: 'success', features: ['可视化界面', '拖拽配置', '项目预览'] },
   { name: 'Trae', support: '多版本支持', status: 'success', features: ['CI/CD集成', '安全令牌', '协议协商'] },
   { name: 'DeepChat', support: '技术支持', status: 'success', features: ['深度讨论', '架构设计', '最佳实践'] },
-  { name: 'Chatbot UI', support: 'Web支持', status: 'success', features: ['在线构建', 'OAuth流程', '跨设备同步'] },
+  { name: 'Chatbox', support: '桌面客户端', status: 'success', features: ['桌面应用', 'OAuth流程', '跨设备同步'] },
   { name: 'Custom Apps', support: '完整API', status: 'success', features: ['定制平台', '企业集成', '团队协作'] },
 ];
 
@@ -355,7 +355,7 @@ export function FeaturesShowcase() {
             8大客户端生态系统
           </h2>
           <p className="text-lg text-muted-foreground">
-            与主流AI开发工具深度集成，随时随地使用VibeCLI
+            支持8大主流AI客户端，随时随地使用VibeCLI
           </p>
         </div>
         

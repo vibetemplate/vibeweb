@@ -20,31 +20,31 @@ import {
 import { cn } from '@/lib/utils';
 
 const stats = [
-  { label: '效率提升', value: '32x', icon: Zap },
-  { label: '开发时间', value: '10分钟', icon: Clock },
+  { label: '编程基础要求', value: '0', icon: Zap },
+  { label: '项目生成时间', value: '10分钟', icon: Clock },
   { label: '支持客户端', value: '8+', icon: Users },
-  { label: 'GitHub Stars', value: '2.3k+', icon: Star },
+  { label: 'NPM 版本', value: 'v1.2.8', icon: Star },
 ];
 
 const highlights = [
   {
-    title: '零学习成本',
-    description: '自然语言交互，告别复杂命令',
+    title: '零编程基础',
+    description: '自然语言描述需求，AI自动生成代码',
     icon: '🗣️',
   },
   {
-    title: '智能适应性',
-    description: 'AI理解意图，自主决策最优方案',
+    title: 'MCP协议驱动',
+    description: 'AI理解意图，智能分析和生成项目',
     icon: '🧠',
   },
   {
-    title: '32x效率提升',
-    description: '从320分钟降至10分钟',
+    title: '10分钟建站',
+    description: '从想法到可运行的Web应用',
     icon: '⚡',
   },
   {
-    title: '生态兼容性',
-    description: '支持8大主流MCP客户端平台',
+    title: '8大客户端支持',
+    description: 'Claude Desktop、Cursor等主流AI工具',
     icon: '🌐',
   },
 ];
@@ -73,19 +73,18 @@ export function HeroSection() {
           {/* Main Hero Content */}
           <div className="text-center max-w-4xl mx-auto mb-16">
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
-              从
-              <span className="gradient-text"> 命令驱动 </span>
-              到
+              让
+              <span className="gradient-text">非程序员</span>
+              也能
               <br />
-              <span className="gradient-text">智能对话驱动</span>
-              的
+              <span className="gradient-text">10分钟建站</span>
               <br />
-              革命性升级
+              的AI驱动工具
             </h1>
             
             <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
-              VibeCLI 2.0基于MCP协议的全面重构，让AI真正理解开发者意图，
-              自主完成复杂的全栈项目构建任务。
+              VibeCLI 2.0基于MCP协议，专为产品经理、创业者、大学生等非技术用户设计。
+              用自然语言描述想法，AI自动生成完整的Web应用。
             </p>
 
             {/* CTA Buttons */}

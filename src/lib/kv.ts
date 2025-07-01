@@ -235,7 +235,7 @@ export class AnalyticsManager {
     }, {} as Record<string, number>);
 
     return Object.entries(pageCounts)
-      .map(([page, views]) => ({ page, views }))
+      .map(([page, views]) => ({ page, views: views as number }))
       .sort((a, b) => b.views - a.views)
       .slice(0, limit);
   }
