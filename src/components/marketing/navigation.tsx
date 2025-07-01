@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useTheme } from 'next-themes';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Moon, Sun, Menu, X, Github, Terminal, Zap, BookOpen, Settings, Lightbulb } from 'lucide-react';
+import { Moon, Sun, Menu, X, Github, Terminal, Zap, BookOpen, Settings, Lightbulb, GitBranch } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const navigation = [
@@ -14,6 +14,12 @@ const navigation = [
     href: '/features',
     icon: Zap,
     description: '强大的AI驱动开发功能',
+  },
+  {
+    name: '更新日志',
+    href: '/changelog',
+    icon: GitBranch,
+    description: '产品版本更新和功能演进',
   },
   {
     name: '项目故事',

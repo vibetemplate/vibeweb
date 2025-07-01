@@ -96,7 +96,7 @@ const clients = [
   }
 ];
 
-const installCommand = 'npm install -g vibe-cli-tool@latest';
+const installCommand = 'npm install -g vibe-cli-tool@1.5.0';
 
 export function QuickInstall() {
   const [copiedCommand, setCopiedCommand] = React.useState(false);
@@ -117,7 +117,7 @@ export function QuickInstall() {
           </Badge>
           <h2 className="text-3xl sm:text-4xl font-bold mb-4">
             两步开始使用
-            <span className="gradient-text"> VibeCLI 2.0</span>
+            <span className="gradient-text"> VibeCLI</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             安装工具，配置客户端，立即体验AI驱动的零门槛开发
@@ -154,7 +154,7 @@ export function QuickInstall() {
                 </Button>
               </div>
               <p className="text-sm text-muted-foreground mt-3 text-center">
-                当前版本：v1.2.8 | 或使用 npx 临时运行
+                当前版本：v1.5.0 | 或使用 npx 临时运行
               </p>
             </CardContent>
           </Card>

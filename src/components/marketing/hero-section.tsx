@@ -23,29 +23,29 @@ const stats = [
   { label: '编程基础要求', value: '0', icon: Zap },
   { label: '项目生成时间', value: '10分钟', icon: Clock },
   { label: '支持客户端', value: '8+', icon: Users },
-  { label: 'NPM 版本', value: 'v1.2.8', icon: Star },
+  { label: 'NPM 版本', value: 'v1.5.0', icon: Star },
 ];
 
 const highlights = [
   {
-    title: '零编程基础',
-    description: '自然语言描述需求，AI自动生成代码',
-    icon: '🗣️',
-  },
-  {
-    title: 'MCP协议驱动',
-    description: 'AI理解意图，智能分析和生成项目',
+    title: 'MCP智能上下文',
+    description: '多轮对话渐进式理解用户意图',
     icon: '🧠',
   },
   {
-    title: '10分钟建站',
-    description: '从想法到可运行的Web应用',
-    icon: '⚡',
+    title: '跨平台目录管理',
+    description: 'Mac/Windows智能目录，清晰位置提示',
+    icon: '📁',
   },
   {
-    title: '8大客户端支持',
-    description: 'Claude Desktop、Cursor等主流AI工具',
-    icon: '🌐',
+    title: '智能模板匹配',
+    description: '5层匹配策略，任何需求都有方案',
+    icon: '🎯',
+  },
+  {
+    title: '智能降级处理',
+    description: '复杂需求分解，专业实施指导',
+    icon: '🎭',
   },
 ];
 
@@ -65,7 +65,7 @@ export function HeroSection() {
           <div className="flex justify-center mb-8">
             <Badge variant="outline" className="px-4 py-2 text-sm font-medium">
               <Sparkles className="mr-2 h-4 w-4" />
-              全新发布：VibeCLI 2.0 MCP版本
+              全新升级：智能模板匹配与降级处理系统
               <ArrowRight className="ml-2 h-4 w-4" />
             </Badge>
           </div>
@@ -83,8 +83,8 @@ export function HeroSection() {
             </h1>
             
             <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
-              VibeCLI 2.0基于MCP协议，专为产品经理、创业者、大学生等非技术用户设计。
-              用自然语言描述想法，AI自动生成完整的Web应用。
+              VibeCLI基于MCP协议，具备智能模板匹配与降级处理能力。
+              无论多复杂的需求，都能提供专业的解决方案和实施指导。
             </p>
 
             {/* CTA Buttons */}
