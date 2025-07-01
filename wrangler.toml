@@ -1,10 +1,12 @@
 name = "vibecli-web"
-compatibility_date = "2024-01-01"
+compatibility_date = "2024-07-01"
 compatibility_flags = ["nodejs_compat"]
 pages_build_output_dir = "out"
 
 [env.production]
 name = "vibecli-web-production"
+[env.production.vars]
+NEXT_PUBLIC_APP_URL = "https://vibecli.150404.xyz"
 
 [env.preview]
 name = "vibecli-web-preview"
