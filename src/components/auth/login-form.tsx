@@ -31,7 +31,9 @@ export function LoginForm() {
         title: '登录成功',
         description: '欢迎回到VibeCLI！',
       });
-      router.push('/dashboard');
+      // 获取返回URL或默认返回首页
+      const returnUrl = new URLSearchParams(window.location.search).get('returnUrl') || '/';
+      router.push(returnUrl);
     } else {
       toast({
         title: '登录失败',
@@ -49,7 +51,9 @@ export function LoginForm() {
         title: 'GitHub登录成功',
         description: '欢迎回到VibeCLI！',
       });
-      router.push('/dashboard');
+      // 获取返回URL或默认返回首页
+      const returnUrl = new URLSearchParams(window.location.search).get('returnUrl') || '/';
+      router.push(returnUrl);
     } else {
       toast({
         title: '登录失败',

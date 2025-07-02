@@ -6,8 +6,9 @@ import { usePathname } from 'next/navigation';
 import { useTheme } from 'next-themes';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Moon, Sun, Menu, X, Github, Terminal, Zap, BookOpen, Settings, Lightbulb, GitBranch } from 'lucide-react';
+import { Moon, Sun, Menu, X, Github, Terminal, Zap, BookOpen, Settings, Lightbulb, GitBranch, User, LogOut } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { useAuth } from '@/lib/auth';
 
 const navigation = [
   {
@@ -57,6 +58,7 @@ export function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const { theme, setTheme } = useTheme();
   const pathname = usePathname();
+  const { user, isAuthenticated, logout } = useAuth();
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -126,15 +128,36 @@ export function Navigation() {
 
           {/* CTA Buttons */}
           <div className="hidden items-center space-x-2 md:flex">
-            <Button variant="outline" asChild>
-              <Link href="/login">登录</Link>
-            </Button>
-            <Button variant="outline" asChild>
-              <Link href="/docs">开始使用</Link>
-            </Button>
-            <Button variant="gradient" asChild>
-              <Link href="/demo">在线体验</Link>
-            </Button>
+            {isAuthenticated && user ? (
+              <>
+                <div className="flex items-center px-3 py-1 space-x-2 rounded-lg bg-slate-100 dark:bg-slate-800">
+                  <div className="flex justify-center items-center w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full">
+                    {user.avatar ? (
+                      <img src={user.avatar} alt={user.name} className="w-8 h-8 rounded-full" />
+                    ) : (
+                      <User className="w-4 h-4 text-white" />
+                    )}
+                  </div>
+                  <span className="text-sm font-medium">{user.name}</span>
+                </div>
+                <Button variant="ghost" size="sm" onClick={logout}>
+                  <LogOut className="mr-2 w-4 h-4" />
+                  登出
+                </Button>
+              </>
+            ) : (
+              <>
+                <Button variant="outline" asChild>
+                  <Link href="/login">登录</Link>
+                </Button>
+                <Button variant="outline" asChild>
+                  <Link href="/docs">开始使用</Link>
+                </Button>
+                <Button variant="gradient" asChild>
+                  <Link href="/demo">在线体验</Link>
+                </Button>
+              </>
+            )}
           </div>
 
           {/* Mobile Menu Toggle */}
@@ -185,17 +208,41 @@ export function Navigation() {
                   </Link>
                 );
               })}
-              <div className="flex flex-col pt-4 space-y-2 border-t">
-                <Button variant="outline" asChild>
-                  <Link href="/login">登录</Link>
-                </Button>
-                <Button variant="outline" asChild>
-                  <Link href="/docs">开始使用</Link>
-                </Button>
-                <Button variant="gradient" asChild>
-                  <Link href="/demo">在线体验</Link>
-                </Button>
-              </div>
+                              <div className="flex flex-col pt-4 space-y-2 border-t">
+                  {isAuthenticated && user ? (
+                    <>
+                      <div className="flex items-center p-3 space-x-3 rounded-lg bg-slate-100 dark:bg-slate-800">
+                        <div className="flex justify-center items-center w-10 h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full">
+                          {user.avatar ? (
+                            <img src={user.avatar} alt={user.name} className="w-10 h-10 rounded-full" />
+                          ) : (
+                            <User className="w-5 h-5 text-white" />
+                          )}
+                        </div>
+                        <div>
+                          <div className="font-medium">{user.name}</div>
+                          <div className="text-sm text-muted-foreground">{user.email}</div>
+                        </div>
+                      </div>
+                      <Button variant="ghost" onClick={logout} className="justify-start">
+                        <LogOut className="mr-2 w-4 h-4" />
+                        登出
+                      </Button>
+                    </>
+                  ) : (
+                    <>
+                      <Button variant="outline" asChild>
+                        <Link href="/login">登录</Link>
+                      </Button>
+                      <Button variant="outline" asChild>
+                        <Link href="/docs">开始使用</Link>
+                      </Button>
+                      <Button variant="gradient" asChild>
+                        <Link href="/demo">在线体验</Link>
+                      </Button>
+                    </>
+                  )}
+                </div>
             </nav>
           </div>
         </div>
