@@ -15,14 +15,15 @@ import {
   Play,
   Download,
   Star,
-  GitBranch
+  GitBranch,
+  Store
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const stats = [
-  { label: '编程基础要求', value: '0', icon: Zap },
+  { label: '模板数量', value: '50+', icon: Store },
   { label: '项目生成时间', value: '10分钟', icon: Clock },
-  { label: '支持客户端', value: '8+', icon: Users },
+  { label: '支持平台', value: '8+', icon: Users },
   { label: '效率提升', value: '32x', icon: Star },
 ];
 
@@ -90,6 +91,13 @@ export function HeroSection() {
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
               <Button size="xl" variant="gradient" asChild>
+                <Link href="/templates">
+                  <Star className="mr-2 h-5 w-5" />
+                  探索模板商店
+                </Link>
+              </Button>
+              
+              <Button size="xl" variant="outline" asChild>
                 <Link href="/demo">
                   <Play className="mr-2 h-5 w-5" />
                   在线体验Demo

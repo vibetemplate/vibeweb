@@ -6,28 +6,37 @@ import { usePathname } from 'next/navigation';
 import { useTheme } from 'next-themes';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Moon, Sun, Menu, X, Github, Terminal, Zap, BookOpen, Settings, Lightbulb, GitBranch, User, LogOut } from 'lucide-react';
+import { Moon, Sun, Menu, X, Github, Terminal, Zap, BookOpen, Settings, Lightbulb, GitBranch, User, LogOut, Store, Rocket, GraduationCap, Shield, Globe } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useAuth } from '@/lib/auth';
 
 const navigation = [
   {
-    name: '产品',
+    name: '模板商店',
+    href: '/templates',
+    icon: Store,
+    description: '远程模板市场，安全安装验证',
+    badge: 'New',
+  },
+  {
+    name: '智能部署',
+    href: '/deploy',
+    icon: Rocket,
+    description: '多平台配置自动生成',
+    badge: 'New',
+  },
+  {
+    name: '学习中心',
+    href: '/learn',
+    icon: GraduationCap,
+    description: '分步教程，实例化学习体验',
+    badge: 'New',
+  },
+  {
+    name: '产品功能',
     href: '/features',
     icon: Zap,
     description: '强大的AI驱动开发功能',
-  },
-  {
-    name: '更新日志',
-    href: '/changelog',
-    icon: GitBranch,
-    description: '产品版本更新和功能演进',
-  },
-  {
-    name: '项目故事',
-    href: '/story',
-    icon: Lightbulb,
-    description: '从DXT启发到VibeCLI的创新故事',
   },
   {
     name: '客户端',
@@ -77,7 +86,7 @@ export function Navigation() {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden items-center space-x-8 md:flex">
+        <nav className="hidden items-center space-x-6 md:flex">
           {navigation.map((item) => {
             const isActive = pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href));
             return (
@@ -93,6 +102,11 @@ export function Navigation() {
               >
                 {item.icon && <item.icon className="w-4 h-4" />}
                 <span>{item.name}</span>
+                {item.badge && (
+                  <Badge variant="gradient" className="text-xs px-1.5 py-0.5 ml-1">
+                    {item.badge}
+                  </Badge>
+                )}
                 <div className={cn(
                   "absolute -bottom-1 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 transition-all",
                   isActive 
@@ -197,8 +211,15 @@ export function Navigation() {
                     onClick={() => setIsMenuOpen(false)}
                   >
                     {item.icon && <item.icon className="w-4 h-4" />}
-                    <div>
-                      <div>{item.name}</div>
+                    <div className="flex-1">
+                      <div className="flex items-center space-x-2">
+                        <span>{item.name}</span>
+                        {item.badge && (
+                          <Badge variant="gradient" className="text-xs px-1.5 py-0.5">
+                            {item.badge}
+                          </Badge>
+                        )}
+                      </div>
                       {item.description && (
                         <div className="text-xs text-muted-foreground">
                           {item.description}
