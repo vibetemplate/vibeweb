@@ -39,12 +39,6 @@ const navigation = [
     description: '强大的AI驱动开发功能',
   },
   {
-    name: '项目故事',
-    href: '/story',
-    icon: Lightbulb,
-    description: '从DXT启发到VibeCLI的创新故事',
-  },
-  {
     name: '客户端',
     href: '/clients',
     icon: Settings,
