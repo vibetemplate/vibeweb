@@ -15,7 +15,8 @@ import {
   BookOpen,
   Users,
   ExternalLink,
-  ArrowRight
+  ArrowRight,
+  GitBranch
 } from 'lucide-react';
 
 const footerLinks = {
@@ -30,6 +31,7 @@ const footerLinks = {
     { name: 'API 文档', href: '/docs/api' },
     { name: 'MCP 协议', href: '/docs/mcp' },
     { name: '最佳实践', href: '/docs/best-practices' },
+    { name: '更新日志', href: '/changelog' },
   ],
   community: [
     { name: 'GitHub', href: 'https://github.com/vibetemplate/vibecli', external: true },
