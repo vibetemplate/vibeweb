@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useTheme } from 'next-themes';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -55,14 +56,15 @@ const navigation = [
 export function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const { theme, setTheme } = useTheme();
+  const pathname = usePathname();
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-16 items-center justify-between">
+      <div className="container flex justify-between items-center h-16">
         {/* Logo */}
         <Link href="/" className="flex items-center space-x-2">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-r from-blue-600 to-purple-600">
-            <Terminal className="h-5 w-5 text-white" />
+          <div className="flex justify-center items-center w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg">
+            <Terminal className="w-5 h-5 text-white" />
           </div>
           <div className="flex flex-col">
             <span className="text-lg font-bold">VibeCLI</span>
@@ -73,18 +75,31 @@ export function Navigation() {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-8">
-          {navigation.map((item) => (
-            <Link
-              key={item.name}
-              href={item.href}
-              className="group relative flex items-center space-x-1 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-            >
-              {item.icon && <item.icon className="h-4 w-4" />}
-              <span>{item.name}</span>
-              <div className="absolute -bottom-1 h-0.5 w-0 bg-gradient-to-r from-blue-600 to-purple-600 transition-all group-hover:w-full" />
-            </Link>
-          ))}
+        <nav className="hidden items-center space-x-8 md:flex">
+          {navigation.map((item) => {
+            const isActive = pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href));
+            return (
+              <Link
+                key={item.name}
+                href={item.href}
+                className={cn(
+                  "flex relative items-center space-x-1 text-sm font-medium transition-colors group",
+                  isActive 
+                    ? "text-foreground" 
+                    : "text-muted-foreground hover:text-foreground"
+                )}
+              >
+                {item.icon && <item.icon className="w-4 h-4" />}
+                <span>{item.name}</span>
+                <div className={cn(
+                  "absolute -bottom-1 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 transition-all",
+                  isActive 
+                    ? "w-full" 
+                    : "w-0 group-hover:w-full"
+                )} />
+              </Link>
+            );
+          })}
         </nav>
 
         {/* Right Side Actions */}
@@ -94,23 +109,23 @@ export function Navigation() {
             variant="ghost"
             size="icon"
             onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-            className="h-9 w-9"
+            className="w-9 h-9"
           >
-            <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-            <Moon className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+            <Sun className="w-4 h-4 transition-all scale-100 rotate-0 dark:-rotate-90 dark:scale-0" />
+            <Moon className="absolute w-4 h-4 transition-all scale-0 rotate-90 dark:rotate-0 dark:scale-100" />
             <span className="sr-only">切换主题</span>
           </Button>
 
           {/* GitHub Link */}
-          <Button variant="ghost" size="icon" asChild className="h-9 w-9">
+          <Button variant="ghost" size="icon" asChild className="w-9 h-9">
             <Link href="https://github.com/vibetemplate/vibecli">
-              <Github className="h-4 w-4" />
+              <Github className="w-4 h-4" />
               <span className="sr-only">GitHub</span>
             </Link>
           </Button>
 
           {/* CTA Buttons */}
-          <div className="hidden md:flex items-center space-x-2">
+          <div className="hidden items-center space-x-2 md:flex">
             <Button variant="outline" asChild>
               <Link href="/login">登录</Link>
             </Button>
@@ -130,9 +145,9 @@ export function Navigation() {
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             {isMenuOpen ? (
-              <X className="h-5 w-5" />
+              <X className="w-5 h-5" />
             ) : (
-              <Menu className="h-5 w-5" />
+              <Menu className="w-5 h-5" />
             )}
             <span className="sr-only">切换菜单</span>
           </Button>
@@ -141,28 +156,36 @@ export function Navigation() {
 
       {/* Mobile Navigation */}
       {isMenuOpen && (
-        <div className="md:hidden border-t bg-background/95 backdrop-blur">
+        <div className="border-t backdrop-blur md:hidden bg-background/95">
           <div className="container py-4">
             <nav className="flex flex-col space-y-4">
-              {navigation.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className="flex items-center space-x-3 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {item.icon && <item.icon className="h-4 w-4" />}
-                  <div>
-                    <div>{item.name}</div>
-                    {item.description && (
-                      <div className="text-xs text-muted-foreground">
-                        {item.description}
-                      </div>
+              {navigation.map((item) => {
+                const isActive = pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href));
+                return (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    className={cn(
+                      "flex items-center space-x-3 text-sm font-medium transition-colors",
+                      isActive 
+                        ? "text-foreground" 
+                        : "text-muted-foreground hover:text-foreground"
                     )}
-                  </div>
-                </Link>
-              ))}
-              <div className="flex flex-col space-y-2 pt-4 border-t">
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {item.icon && <item.icon className="w-4 h-4" />}
+                    <div>
+                      <div>{item.name}</div>
+                      {item.description && (
+                        <div className="text-xs text-muted-foreground">
+                          {item.description}
+                        </div>
+                      )}
+                    </div>
+                  </Link>
+                );
+              })}
+              <div className="flex flex-col pt-4 space-y-2 border-t">
                 <Button variant="outline" asChild>
                   <Link href="/login">登录</Link>
                 </Button>
