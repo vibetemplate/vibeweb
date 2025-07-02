@@ -103,18 +103,6 @@ export function HeroSection() {
                 </Link>
               </Button>
             </div>
-
-            {/* Quick Install */}
-            <div className="max-w-md mx-auto">
-              <p className="text-sm text-muted-foreground mb-2">快速安装</p>
-              <Card className="bg-slate-900 border-slate-700">
-                <CardContent className="p-4">
-                  <code className="text-green-400 text-sm font-mono">
-                    npm install -g vibe-cli-tool@latest
-                  </code>
-                </CardContent>
-              </Card>
-            </div>
           </div>
 
           {/* Stats */}
