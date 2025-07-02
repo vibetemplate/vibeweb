@@ -3,12 +3,12 @@ import { Navigation } from '@/components/marketing/navigation';
 import { FeaturesShowcase } from '@/components/marketing/features-showcase';
 
 export const metadata: Metadata = {
-  title: '产品功能 - VibeCLI 2.0',
-  description: '探索VibeCLI 2.0基于MCP协议的四大核心工具：项目分析器、模板生成器、功能合成器、部署管理器。体验AI驱动的智能开发流程。',
-  keywords: ['VibeCLI功能', 'MCP工具', 'AI开发', '项目分析', '模板生成', '功能合成', '部署管理'],
+  title: '产品功能 - VibeCLI',
+  description: '探索VibeCLI的六大核心特性：模板商店生态系统、智能部署生成器、国际化支持、交互式学习系统、企业级安全、MCP智能上下文。体验AI驱动的现代化开发体验。',
+  keywords: ['VibeCLI功能', '模板商店', '智能部署', '国际化', '交互式学习', '企业安全', 'MCP上下文', 'AI开发'],
   openGraph: {
-    title: '产品功能 - VibeCLI 2.0',
-    description: '四大智能工具重新定义开发体验，基于MCP协议的全流程AI驱动自动化',
+    title: '产品功能 - VibeCLI',
+    description: '六大核心特性重新定义开发体验，32x效率提升的现代化开发工具',
     type: 'website',
   },
 };

@@ -31,6 +31,15 @@ export const metadata = {
     address: false,
     telephone: false,
   },
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: '16x16 32x32 48x48' },
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/icon.svg', type: 'image/svg+xml', sizes: '512x512' },
+    ],
+    shortcut: '/favicon.ico',
+    apple: '/icon.svg',
+  },
   metadataBase: new URL('https://vibecli.com'),
   alternates: {
     canonical: '/',

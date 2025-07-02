@@ -66,10 +66,10 @@ const mcpFeatures = [
     details: ['会话状态管理', '双向通信', 'SSE流式响应', '断线重连机制'],
   },
   {
-    title: '四大核心MCP工具',
-    description: '智能分析、模板生成、功能合成、部署管理',
+    title: '五大核心MCP工具',
+    description: '智能分析、模板生成、功能合成、部署管理、提示词生成',
     icon: Brain,
-    details: ['project_analyzer', 'template_generator', 'feature_composer', 'deployment_manager'],
+    details: ['project_analyzer', 'template_generator', 'feature_composer', 'deployment_manager', 'prompt_generator'],
   },
   {
     title: '智能能力协商',

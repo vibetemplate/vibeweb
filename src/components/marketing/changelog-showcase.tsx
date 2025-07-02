@@ -45,6 +45,76 @@ interface Feature {
 
 const updates: VersionUpdate[] = [
   {
+    version: '1.9.0',
+    date: '2025-07-02',
+    type: 'major',
+    title: '完整模板商店生态系统',
+    description: '革命性的模板商店生态系统，集成智能部署生成器、多语言支持、交互式学习系统和企业级安全验证。实现真正的开发者生态闭环。',
+    highlights: [
+      '模板商店生态 - 远程/本地模板管理系统',
+      '智能部署生成器 - 多平台自动配置支持',
+      '国际化支持 - CLI多语言界面切换',
+      '交互式学习系统 - 内置分步教程指导',
+      '企业级安全 - Ed25519数字签名和SHA-256验证'
+    ],
+    features: [
+      {
+        name: '模板商店系统',
+        description: 'vibecli template - 远程模板市场，安全安装验证',
+        icon: Download,
+        category: 'new'
+      },
+      {
+        name: '智能部署生成器',
+        description: 'vibecli deploy --generate - 多平台配置自动生成',
+        icon: Settings,
+        category: 'new'
+      },
+      {
+        name: '交互式学习系统',
+        description: 'vibecli learn - 分步教程，实例化学习体验',
+        icon: Brain,
+        category: 'new'
+      },
+      {
+        name: '多语言支持',
+        description: 'vibecli --lang en|zh - CLI界面语言切换',
+        icon: Users,
+        category: 'new'
+      },
+      {
+        name: '企业级安全',
+        description: 'Ed25519签名验证，SHA-256完整性检查',
+        icon: Shield,
+        category: 'enhanced'
+      },
+      {
+        name: '模板发布系统',
+        description: 'vibecli publish-template - 社区模板贡献',
+        icon: Star,
+        category: 'new'
+      }
+    ],
+    improvements: [
+      '添加50+个新的单元测试，实现90%+测试覆盖率',
+      '修复ESM兼容性问题，完善__dirname替代方案',
+      '增强TypeScript类型安全，提升代码质量',
+      '优化构建流程，自动化模板索引生成',
+      '完善错误处理和用户指导信息'
+    ],
+    fixes: [
+      '修复template:index脚本的ESM兼容性问题',
+      '解决TypeScript编译错误和类型不匹配',
+      '优化模板路径解析和加载逻辑',
+      '修复版本管理不一致问题'
+    ],
+    breaking: [
+      '模板解析优先级变更：已安装模板优先于内置模板',
+      '配置结构增强：新增验证和模式检查',
+      '命令选项优化：部分命令参数重新设计'
+    ]
+  },
+  {
     version: '1.8.0',
     date: '2025-07-02',
     type: 'major',

@@ -1,6 +1,7 @@
 import { Navigation } from '@/components/marketing/navigation';
 import { HeroSection } from '@/components/marketing/hero-section';
 import { QuickInstall } from '@/components/marketing/quick-install';
+import { FeaturesOverview } from '@/components/marketing/features-overview';
 import { ValueProposition } from '@/components/marketing/value-proposition';
 
 export default function HomePage() {
@@ -10,6 +11,7 @@ export default function HomePage() {
       <main>
         <HeroSection />
         <QuickInstall />
+        <FeaturesOverview />
         <ValueProposition />
       </main>
     </div>

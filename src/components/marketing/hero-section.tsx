@@ -23,29 +23,29 @@ const stats = [
   { label: '编程基础要求', value: '0', icon: Zap },
   { label: '项目生成时间', value: '10分钟', icon: Clock },
   { label: '支持客户端', value: '8+', icon: Users },
-  { label: 'NPM 版本', value: 'v1.5.0', icon: Star },
+  { label: '效率提升', value: '32x', icon: Star },
 ];
 
 const highlights = [
   {
-    title: 'MCP智能上下文',
-    description: '多轮对话渐进式理解用户意图',
+    title: '模板商店生态',
+    description: '远程模板市场，数字签名保护',
+    icon: '🏪',
+  },
+  {
+    title: '智能部署生成器',
+    description: '多平台一键配置，CI/CD自动化',
     icon: '🧠',
   },
   {
-    title: '跨平台目录管理',
-    description: 'Mac/Windows智能目录，清晰位置提示',
-    icon: '📁',
+    title: '国际化支持',
+    description: '多语言CLI界面，本地化模板',
+    icon: '🌍',
   },
   {
-    title: '智能模板匹配',
-    description: '5层匹配策略，任何需求都有方案',
-    icon: '🎯',
-  },
-  {
-    title: '智能降级处理',
-    description: '复杂需求分解，专业实施指导',
-    icon: '🎭',
+    title: '交互式学习',
+    description: '分步教程指导，知识库集成',
+    icon: '🎓',
   },
 ];
 
@@ -65,7 +65,7 @@ export function HeroSection() {
           <div className="flex justify-center mb-8">
             <Badge variant="outline" className="px-4 py-2 text-sm font-medium">
               <Sparkles className="mr-2 h-4 w-4" />
-              全新升级：智能模板匹配与降级处理系统
+              全新升级：模板商店生态 + 智能部署生成器 + 企业级安全
               <ArrowRight className="ml-2 h-4 w-4" />
             </Badge>
           </div>
@@ -83,8 +83,8 @@ export function HeroSection() {
             </h1>
             
             <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
-              VibeCLI基于MCP协议，具备智能模板匹配与降级处理能力。
-              无论多复杂的需求，都能提供专业的解决方案和实施指导。
+              VibeCLI集成模板商店生态、智能部署生成器、多语言支持、交互式学习系统和企业级安全验证。
+              通过MCP协议实现AI智能上下文感知，为开发者提供32x效率提升的现代化开发体验。
             </p>
 
             {/* CTA Buttons */}

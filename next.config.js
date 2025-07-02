@@ -1,11 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
   trailingSlash: true,
   experimental: {
     serverComponentsExternalPackages: ['@prisma/client'],
   },
   images: {
+    unoptimized: true, // Required for static export
     domains: ['avatars.githubusercontent.com', 'images.unsplash.com'],
     remotePatterns: [
       {
@@ -14,8 +14,11 @@ const nextConfig = {
       },
     ],
   },
-  // Note: rewrites and headers are not supported with output: 'export'
-  // Headers are handled by _headers file for Cloudflare Pages
+  // Enable static export for Cloudflare Pages
+  output: 'export',
+  distDir: 'out',
+  // Disable server-side features that don't work with static export
+  generateEtags: false,
 };
 
 module.exports = nextConfig;

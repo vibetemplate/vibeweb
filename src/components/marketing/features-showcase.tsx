@@ -25,106 +25,186 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 
-const coreTools = [
+const coreFeatures = [
   {
-    id: 'project_analyzer',
-    title: 'project_analyzer',
-    subtitle: '项目分析器',
-    description: '智能分析用户需求，推荐最适合的技术栈和架构',
-    icon: Brain,
+    id: 'template_store',
+    title: '模板商店生态系统',
+    subtitle: '🏪 Template Store Ecosystem',
+    description: '远程模板市场，安全安装验证，数字签名保护。支持本地模板管理、离线开发和版本化管理，通过智能模板匹配算法为项目推荐最佳模板。社区驱动的开源生态系统，持续更新和优化。',
+    icon: Code,
     color: 'from-blue-500 to-cyan-500',
     features: [
-      '智能识别项目类型',
-      '技术栈推荐算法', 
-      '复杂度评估分析',
-      '风险预警机制',
-      '成本时间估算',
-      '替代方案建议'
+      '远程模板市场 - 丰富的模板库，覆盖各种应用类型',
+      '安全安装验证 - Ed25519数字签名保护',
+      '数字签名保护 - 确保模板完整性和安全性',
+      '本地模板管理 - 支持离线开发和自定义模板',
+      '离线开发支持 - 无网络环境下正常使用',
+      '版本化管理 - 模板版本控制和升级管理',
+      '智能模板匹配 - 多层次匹配策略，精准推荐',
+      '社区驱动生态 - 开源贡献，持续演进'
     ],
     demo: {
-      input: '我想创建一个电商网站，需要用户认证、商品管理、购物车和支付功能',
+      input: 'vibecli template search ecommerce',
       output: {
-        projectType: 'E-commerce Platform',
-        techStack: 'Next.js + Prisma + Stripe',
-        complexity: 'Medium',
-        estimatedTime: '45分钟',
-        risks: ['支付安全', '数据一致性'],
+        found: '12个模板',
+        recommended: 'nextjs-stripe-ecommerce',
+        rating: '4.8/5 (156 reviews)',
+        security: 'Ed25519数字签名验证通过',
+        features: ['Stripe支付', 'Prisma ORM', 'NextAuth'],
       }
+    },
+    documentation: {
+      overview: '/docs/template-store',
+      api: '/docs/api#template-store',
+      examples: '/docs/examples/template-store',
+      security: '/docs/security/digital-signature'
     }
   },
   {
-    id: 'template_generator',
-    title: 'template_generator', 
-    subtitle: '模板生成器',
-    description: '基于分析结果生成完整项目模板',
-    icon: Code,
+    id: 'deploy_generator',
+    title: '智能部署生成器',
+    subtitle: '🧠 Intelligent Deploy Generator',
+    description: '革命性的多平台部署解决方案，支持Vercel、Netlify、AWS、Docker等主流平台的一键配置。智能识别项目类型和依赖关系，自动生成最优的部署配置和CI/CD流程，集成安全性和性能优化最佳实践。',
+    icon: Cloud,
     color: 'from-purple-500 to-pink-500',
     features: [
-      '完整项目结构生成',
-      '配置文件自动创建',
-      '基础代码模板',
-      '依赖管理配置',
-      '环境变量模板',
-      '文档自动生成'
+      '多平台支持 - Vercel、Netlify、AWS、Docker全覆盖',
+      '一键配置 - 自动生成平台特定的配置文件',
+      '环境自动检测 - 智能识别技术栈和依赖',
+      '智能分析 - 项目复杂度和资源需求评估',
+      'CI/CD集成 - 自动生成GitHub Actions/GitLab CI',
+      '安全配置 - HTTPS、CORS、CSP自动设置',
+      '性能优化 - CDN、缓存、压缩策略优化',
+      '监控集成 - 自动配置性能和错误监控'
     ],
     demo: {
-      input: 'Next.js + TypeScript + Prisma + Stripe电商模板',
-      output: {
-        files: 150,
-        structure: '7层目录结构',
-        features: ['认证', '商品', '购物车', '支付'],
-        time: '生成用时: 2分钟',
-      }
-    }
-  },
-  {
-    id: 'feature_composer',
-    title: 'feature_composer',
-    subtitle: '功能合成器', 
-    description: '动态添加和组合复杂功能模块',
-    icon: Sparkles,
-    color: 'from-green-500 to-emerald-500',
-    features: [
-      '功能模块智能组合',
-      '现有代码无缝集成',
-      '配置文件自动更新',
-      '测试用例生成',
-      '文档同步更新',
-      '依赖冲突解决'
-    ],
-    demo: {
-      input: '为现有项目添加实时聊天功能',
-      output: {
-        integration: 'WebSocket + Socket.io',
-        files: '新增18个文件',
-        updates: '更新12个配置',
-        tests: '生成6个测试用例',
-      }
-    }
-  },
-  {
-    id: 'deployment_manager',
-    title: 'deployment_manager',
-    subtitle: '部署管理器',
-    description: '智能部署配置和多平台发布',
-    icon: Cloud,
-    color: 'from-orange-500 to-red-500',
-    features: [
-      '多平台部署支持',
-      'CI/CD流水线配置',
-      '环境变量管理',
-      '监控日志设置',
-      '域名SSL配置',
-      '性能优化建议'
-    ],
-    demo: {
-      input: '部署到Vercel生产环境',
+      input: 'vibecli deploy --platform vercel --env production',
       output: {
         platform: 'Vercel',
-        domain: 'your-app.vercel.app',
-        ssl: '自动HTTPS',
-        cdn: '全球CDN加速',
-        monitoring: '性能监控已启用',
+        config: 'vercel.json自动生成',
+        env: '环境变量安全配置',
+        ssl: 'HTTPS自动启用',
+        cdn: '全球CDN优化',
+        monitoring: '性能监控集成',
+      }
+    },
+    documentation: {
+      overview: '/docs/deploy-generator',
+      platforms: '/docs/deploy/platforms',
+      config: '/docs/deploy/configuration',
+      cicd: '/docs/deploy/ci-cd'
+    }
+  },
+  {
+    id: 'i18n_support',
+    title: '国际化支持',
+    subtitle: '🌍 Internationalization Support',
+    description: '多语言CLI界面，本地化模板，区域化配置，社区翻译',
+    icon: Users,
+    color: 'from-green-500 to-emerald-500',
+    features: [
+      '多语言CLI界面',
+      '中文、英文界面切换',
+      '本地化模板',
+      '适应不同地区的开发习惯',
+      '区域化配置',
+      '自动适配时区、货币等本地设置',
+      '社区翻译',
+      '开放式翻译贡献机制'
+    ],
+    demo: {
+      input: 'vibecli config set language zh-CN',
+      output: {
+        language: '界面语言已切换为中文',
+        templates: '本地化模板推荐',
+        timezone: '自动检测为Asia/Shanghai',
+        currency: '默认货币设置为CNY',
+        region: '中国区域优化配置',
+      }
+    }
+  },
+  {
+    id: 'learning_system',
+    title: '交互式学习系统',
+    subtitle: '🎓 Interactive Learning System',
+    description: '分步教程指导，实时代码提示，错误诊断，知识库集成',
+    icon: Brain,
+    color: 'from-yellow-500 to-orange-500',
+    features: [
+      '分步教程指导',
+      '内置学习路径，从入门到进阶',
+      '实时代码提示',
+      '智能代码补全和最佳实践建议',
+      '错误诊断',
+      '友好的错误信息和解决方案',
+      '知识库集成',
+      '文档、示例、FAQ一站式查询'
+    ],
+    demo: {
+      input: 'vibecli learn react-hooks',
+      output: {
+        tutorial: '8步React Hooks教程',
+        progress: '当前进度: 3/8',
+        nextStep: 'useEffect生命周期',
+        tips: '3个最佳实践提示',
+        examples: '5个实用代码示例',
+      }
+    }
+  },
+  {
+    id: 'enterprise_security',
+    title: '企业级安全',
+    subtitle: '🔒 Enterprise Security',
+    description: 'Ed25519数字签名，SHA-256哈希验证，权限管理，安全审计',
+    icon: Shield,
+    color: 'from-red-500 to-pink-500',
+    features: [
+      'Ed25519数字签名',
+      '模板和代码包完整性验证',
+      'SHA-256哈希验证',
+      '文件传输安全保障',
+      '权限管理',
+      '细粒度的文件系统访问控制',
+      '安全审计',
+      '代码生成安全性检查'
+    ],
+    demo: {
+      input: 'vibecli template verify nextjs-template',
+      output: {
+        signature: 'Ed25519签名验证通过',
+        hash: 'SHA-256哈希匹配',
+        publisher: '官方认证发布者',
+        security: '安全扫描无风险',
+        permissions: '最小权限原则',
+      }
+    }
+  },
+  {
+    id: 'mcp_context',
+    title: 'MCP智能上下文',
+    subtitle: '🤖 MCP Intelligent Context',
+    description: 'AI决策引擎，渐进式理解，智能降级处理，上下文感知',
+    icon: MessageSquare,
+    color: 'from-indigo-500 to-purple-500',
+    features: [
+      'AI决策引擎',
+      '基于上下文的智能项目分析',
+      '渐进式理解',
+      '多轮对话构建完整项目画像',
+      '智能降级处理',
+      '当无完美匹配时提供最佳替代方案',
+      '上下文感知',
+      '记住用户偏好和项目历史'
+    ],
+    demo: {
+      input: '我想做一个类似抖音的短视频应用',
+      output: {
+        understanding: '理解度: 85%',
+        analysis: '短视频社交平台',
+        complexity: '高复杂度项目',
+        suggestions: '建议分阶段实现',
+        alternatives: '3个简化方案',
+        timeline: '预计开发周期12周',
       }
     }
   },
@@ -197,29 +277,29 @@ const clientEcosystem = [
 ];
 
 export function FeaturesShowcase() {
-  const [activeDemo, setActiveDemo] = React.useState<string>(coreTools[0].id);
+  const [activeDemo, setActiveDemo] = React.useState<string>(coreFeatures[0].id);
 
   return (
     <div className="space-y-20">
       {/* Header */}
       <div className="text-center max-w-3xl mx-auto">
         <Badge variant="outline" className="mb-4">
-          MCP 核心功能
+          六大核心特性 + 五大MCP工具
         </Badge>
         <h1 className="text-4xl sm:text-5xl font-bold mb-6">
-          四大智能工具
+          六大核心特性
           <span className="gradient-text"> 重新定义</span>
           <br />
           开发体验
         </h1>
         <p className="text-xl text-muted-foreground">
-          基于MCP协议的智能工具集，从需求分析到项目部署的全流程AI驱动自动化
+          集成五大MCP智能工具：project_analyzer、template_generator、feature_composer、deployment_manager、prompt_generator，提供完整的AI驱动开发体验
         </p>
       </div>
 
-      {/* Core Tools Showcase */}
+      {/* Core Features Showcase */}
       <div className="space-y-16">
-        {coreTools.map((tool, index) => (
+        {coreFeatures.map((tool, index) => (
           <div key={tool.id} className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className={`${index % 2 === 1 ? 'lg:order-2' : ''}`}>
               <div className="space-y-6">
@@ -256,7 +336,7 @@ export function FeaturesShowcase() {
                     </Link>
                   </Button>
                   <Button variant="outline" asChild>
-                    <Link href={`/docs/tools/${tool.id}`}>
+                    <Link href={`/docs/features/${tool.id.replace(/_/g, '-')}`}>
                       文档详情
                     </Link>
                   </Button>
@@ -302,6 +382,92 @@ export function FeaturesShowcase() {
             </div>
           </div>
         ))}
+      </div>
+
+      <Separator className="my-16" />
+
+      {/* Five MCP Tools */}
+      <div className="space-y-12">
+        <div className="text-center">
+          <h2 className="text-3xl font-bold mb-4">
+            五大核心MCP工具
+          </h2>
+          <p className="text-lg text-muted-foreground">
+            智能分析、模板生成、功能合成、部署管理、提示词生成 - 完整的AI驱动开发流水线
+          </p>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {[
+            {
+              name: 'project_analyzer',
+              title: '项目分析器',
+              description: '智能分析用户需求，推荐最佳技术栈和架构',
+              icon: Brain,
+              features: ['需求分析', '技术栈推荐', '复杂度评估', '时间估算']
+            },
+            {
+              name: 'template_generator',
+              title: '模板生成器',
+              description: '基于分析结果生成完整项目模板',
+              icon: Code,
+              features: ['项目生成', '配置文件', '代码模板', '依赖管理']
+            },
+            {
+              name: 'feature_composer',
+              title: '功能合成器',
+              description: '动态添加和组合复杂功能模块',
+              icon: Sparkles,
+              features: ['功能集成', '代码合并', '配置更新', '测试生成']
+            },
+            {
+              name: 'deployment_manager',
+              title: '部署管理器',
+              description: '智能部署配置和多平台发布',
+              icon: Cloud,
+              features: ['部署配置', 'CI/CD设置', '环境管理', '性能优化']
+            },
+            {
+              name: 'prompt_generator',
+              title: '提示词生成器',
+              description: 'MCP智能提示词生成，上下文感知',
+              icon: MessageSquare,
+              features: ['智能提示', '上下文理解', '个性化推荐', '会话管理']
+            }
+          ].map((tool, index) => (
+            <Card key={tool.name} className="card-hover">
+              <CardHeader>
+                <div className="flex items-start gap-3">
+                  <div className="p-2 rounded-lg bg-blue-100 dark:bg-blue-900">
+                    <tool.icon className="h-6 w-6 text-blue-600" />
+                  </div>
+                  <div>
+                    <Badge variant="outline" className="mb-2 font-mono text-xs">
+                      {tool.name}
+                    </Badge>
+                    <CardTitle className="text-lg">{tool.title}</CardTitle>
+                    <CardDescription className="text-sm">{tool.description}</CardDescription>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-2 gap-2 mb-4">
+                  {tool.features.map((feature, idx) => (
+                    <div key={idx} className="flex items-center gap-2 text-sm">
+                      <CheckCircle className="h-3 w-3 text-green-600" />
+                      {feature}
+                    </div>
+                  ))}
+                </div>
+                <Button variant="outline" size="sm" asChild className="w-full">
+                  <Link href={`/docs/tools/${tool.name}`}>
+                    查看详细文档
+                  </Link>
+                </Button>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
       </div>
 
       <Separator className="my-16" />

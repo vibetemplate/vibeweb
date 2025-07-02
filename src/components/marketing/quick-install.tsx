@@ -96,7 +96,7 @@ const clients = [
   }
 ];
 
-const installCommand = 'npm install -g vibe-cli-tool@1.5.0';
+const installCommand = 'npm install -g vibe-cli-tool@latest';
 
 export function QuickInstall() {
   const [copiedCommand, setCopiedCommand] = React.useState(false);
