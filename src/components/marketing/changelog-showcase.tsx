@@ -45,6 +45,94 @@ interface Feature {
 
 const updates: VersionUpdate[] = [
   {
+    version: '1.8.0',
+    date: '2025-07-02',
+    type: 'major',
+    title: '零配置体验与智能助手系统',
+    description: '全新的零配置开发体验，集成智能聊天助手、环境诊断修复和三层配置管理系统。SQLite默认数据库实现真正的一键启动。',
+    highlights: [
+      '零配置体验 - SQLite默认数据库，一键启动',
+      '智能聊天助手 - vibecli chat 实时意图分析',
+      '环境诊断修复 - vibecli doctor 自动依赖管理',
+      '三层配置系统 - defaults → overrides → runtime'
+    ],
+    features: [
+      {
+        name: '智能聊天助手',
+        description: 'vibecli chat - 自然语言项目分析和建议',
+        icon: Brain,
+        category: 'new'
+      },
+      {
+        name: '环境诊断工具',
+        description: 'vibecli doctor - 自动检测和修复依赖问题',
+        icon: Shield,
+        category: 'new'
+      },
+      {
+        name: '三层配置系统',
+        description: 'validate、diff、migrate、reset 配置管理',
+        icon: Settings,
+        category: 'new'
+      },
+      {
+        name: '零配置体验',
+        description: 'SQLite默认数据库，自动依赖安装',
+        icon: Zap,
+        category: 'enhanced'
+      }
+    ],
+    improvements: [
+      '修复ES模块兼容性问题，支持__dirname替代方案',
+      '优化构建流程，自动复制配置文件到dist目录',
+      '默认数据库改为SQLite，降低新手门槛',
+      '增强CLI命令体验，98个测试全部通过'
+    ],
+    fixes: [
+      '修复config-provider.ts中的ES模块兼容性',
+      '解决配置文件未复制到编译目录的问题',
+      '优化依赖检查和自动安装逻辑'
+    ]
+  },
+  {
+    version: '1.7.2',
+    date: '2025-06-30',
+    type: 'patch',
+    title: '企业级测试覆盖与统一版本管理',
+    description: '实现完整的测试覆盖体系，98个测试全部通过，统一版本管理系统确保发布质量。',
+    highlights: [
+      '98个测试全部通过，100%测试覆盖率',
+      '统一版本管理，从package.json动态读取',
+      '完整的Mock系统，ESM兼容性支持',
+      '自动化发布流程，语义化版本控制'
+    ],
+    features: [
+      {
+        name: '完整测试体系',
+        description: '单元、集成、E2E测试，Mock系统',
+        icon: CheckCircle,
+        category: 'new'
+      },
+      {
+        name: '统一版本管理',
+        description: '动态版本读取，自动化发布流程',
+        icon: GitBranch,
+        category: 'new'
+      }
+    ],
+    improvements: [
+      '建立企业级代码质量标准',
+      '优化性能指标和兼容性矩阵',
+      '完善CI/CD流程和安全性检查',
+      '增强文档和开发者体验'
+    ],
+    fixes: [
+      '修复版本不一致问题',
+      '解决测试环境Mock兼容性',
+      '优化构建和发布流程'
+    ]
+  },
+  {
     version: '1.5.0',
     date: '2025-07-01',
     type: 'major',
